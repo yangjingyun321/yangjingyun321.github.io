@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>杨景云 | 个人主页</title>
+  <style>
+    :root {
+      --bg: #f7f4ed;
+      --panel: rgba(255, 255, 255, 0.78);
+      --panel-strong: rgba(255, 255, 255, 0.94);
+      --ink: #1b2430;
+      --muted: #566273;
+      --line: rgba(27, 36, 48, 0.10);
+      --blue: #3f6f92;
+      --blue-soft: #d8e6f0;
+      --accent: #e8c98f;
+      --shadow: 0 24px 60px rgba(34, 49, 63, 0.10);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --max-width: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Avenir Next", "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(232, 201, 143, 0.35), transparent 26%),
+        radial-gradient(circle at 85% 12%, rgba(63, 111, 146, 0.20), transparent 18%),
+        linear-gradient(180deg, #f9f7f1 0%, #f4efe5 46%, #f7f4ed 100%);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img,
+    video {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page-shell {
+      width: min(var(--max-width), calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 56px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+      padding: 0 4px;
+      animation: rise 0.8s ease both;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--blue), #87a8be);
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 0;
+      box-shadow: 0 10px 24px rgba(63, 111, 146, 0.25);
+    }
+
+    .top-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .ghost-link {
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      color: var(--muted);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 26px;
+      align-items: stretch;
+      margin-bottom: 28px;
+    }
+
+    .hero-copy,
+    .hero-photo {
+      background: var(--panel);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      overflow: hidden;
+    }
+
+    .hero-copy {
+      padding: 34px;
+      position: relative;
+      animation: rise 0.9s ease both;
+    }
+
+    .hero-copy::after {
+      content: "";
+      position: absolute;
+      right: -40px;
+      top: -40px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(63, 111, 146, 0.18), transparent 70%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(63, 111, 146, 0.10);
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    h1 {
+      margin: 18px 0 12px;
+      font-family: "Baskerville", "Songti SC", "STSong", serif;
+      font-size: clamp(2.4rem, 6vw, 4.3rem);
+      line-height: 1.06;
+      letter-spacing: 0.01em;
+    }
+
+    .lead {
+      max-width: 620px;
+      font-size: 17px;
+      color: var(--muted);
+      margin: 0 0 22px;
+    }
+
+    .hero-tags,
+    .skill-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .hero-tag,
+    .chip {
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.84);
+      color: var(--ink);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 13px 20px;
+      border-radius: 999px;
+      font-weight: 600;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      background: linear-gradient(135deg, var(--blue), #5f87a4);
+      color: #fff;
+      box-shadow: 0 14px 28px rgba(63, 111, 146, 0.24);
+    }
+
+    .button-secondary {
+      background: rgba(255, 255, 255, 0.86);
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+
+    .contact-strip {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 12px;
+      margin-top: 26px;
+      max-width: 430px;
+    }
+
+    .contact-item {
+      padding: 16px 18px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.74);
+      border: 1px solid rgba(27, 36, 48, 0.06);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .contact-label {
+      display: block;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    .contact-item strong {
+      display: block;
+      font-size: clamp(1.12rem, 1.42vw, 1.42rem);
+      line-height: 1.34;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      font-weight: 700;
+    }
+
+    .hero-photo {
+      display: flex;
+      flex-direction: column;
+      animation: rise 1s ease both;
+      animation-delay: 0.08s;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      min-height: 640px;
+      object-fit: cover;
+      object-position: center 24%;
+    }
+
+    .photo-caption {
+      padding: 14px 18px;
+      font-size: 13px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.86);
+    }
+
+    .stats-grid,
+    .strength-grid,
+    .timeline-grid,
+    .gallery-grid,
+    .meta-grid {
+      display: grid;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .stats-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      animation: rise 1.1s ease both;
+      animation-delay: 0.16s;
+    }
+
+    .panel {
+      background: var(--panel-strong);
+      border: 1px solid rgba(255, 255, 255, 0.88);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .stat-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--blue), var(--accent));
+    }
+
+    .stat-number {
+      font-family: "Baskerville", "Songti SC", serif;
+      font-size: clamp(2.0rem, 5vw, 2.8rem);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .section {
+      margin-top: 20px;
+      animation: rise 1s ease both;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 18px;
+      margin-bottom: 18px;
+      padding: 0 4px;
+    }
+
+    .section-kicker {
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .section h2 {
+      margin: 0;
+      font-family: "Baskerville", "Songti SC", serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+    }
+
+    .section-intro {
+      max-width: 640px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .summary-panel p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .meta-grid {
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: stretch;
+    }
+
+    .summary-panel {
+      padding: 28px;
+    }
+
+    .side-panel {
+      padding: 28px;
+      background:
+        linear-gradient(180deg, rgba(216, 230, 240, 0.55), rgba(255, 255, 255, 0.95));
+    }
+
+    .micro-title {
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .mini-list {
+      display: grid;
+      gap: 12px;
+      color: var(--ink);
+    }
+
+    .mini-item {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .mini-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .mini-item strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .strength-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .strength-card {
+      padding: 26px;
+      min-height: 100%;
+    }
+
+    .strength-card h3,
+    .timeline-card h3,
+    .experience-card h3,
+    .talent-copy h3 {
+      margin: 0 0 12px;
+      font-size: 1.15rem;
+    }
+
+    .strength-card p,
+    .timeline-card p,
+    .experience-card p,
+    .talent-copy p,
+    .gallery-note,
+    .footer-note {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .timeline-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .timeline-card {
+      padding: 26px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .timeline-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .timeline-tag {
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(63, 111, 146, 0.10);
+      color: var(--blue);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .timeline-card ul,
+    .experience-card ul {
+      margin: 16px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .experience-stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .experience-card {
+      padding: 28px;
+    }
+
+    .experience-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+
+    .experience-role {
+      color: var(--blue);
+      font-weight: 700;
+    }
+
+    .gallery-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      align-items: stretch;
+    }
+
+    .gallery-card {
+      overflow: hidden;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .gallery-card img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+    }
+
+    .gallery-card .gallery-note {
+      padding: 16px 18px 18px;
+      background: rgba(255, 255, 255, 0.94);
+      min-height: 150px;
+    }
+
+    .gallery-card-autumn img {
+      object-position: center 34%;
+    }
+
+    .gallery-card-city img {
+      object-position: center 42%;
+    }
+
+    .gallery-card-forum img {
+      object-position: 88% 44%;
+    }
+
+    .talent-grid {
+      display: grid;
+      grid-template-columns: 0.94fr 1.06fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .talent-copy,
+    .talent-media {
+      padding: 28px;
+    }
+
+    .talent-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .talent-media {
+      background:
+        linear-gradient(180deg, rgba(216, 230, 240, 0.45), rgba(255, 255, 255, 0.96));
+    }
+
+    .talent-video {
+      margin-top: 14px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(27, 36, 48, 0.08);
+      box-shadow: 0 18px 36px rgba(34, 49, 63, 0.12);
+      background: #10161d;
+    }
+
+    .talent-video video {
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      object-fit: cover;
+      background: #000;
+    }
+
+    .talent-copy p {
+      font-size: 1.05rem;
+      line-height: 1.92;
+    }
+
+    .talent-copy p + p {
+      margin-top: 16px;
+    }
+
+    .talent-copy strong {
+      color: var(--ink);
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .hero,
+      .meta-grid,
+      .gallery-grid,
+      .talent-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-grid,
+      .strength-grid,
+      .timeline-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero-photo img {
+        min-height: 520px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .page-shell {
+        width: min(var(--max-width), calc(100% - 20px));
+        padding-top: 20px;
+      }
+
+      .topbar,
+      .section-head,
+      .timeline-top,
+      .experience-meta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .stats-grid,
+      .strength-grid,
+      .timeline-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy,
+      .panel,
+      .summary-panel,
+      .side-panel,
+      .strength-card,
+      .timeline-card,
+      .experience-card,
+      .talent-copy,
+      .talent-media {
+        padding: 22px;
+      }
+
+      .hero-photo img,
+      .gallery-card img {
+        min-height: 300px;
+        height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">Y</div>
+        <span>Personal Profile</span>
+      </div>
+      <nav class="top-links">
+        <a class="ghost-link" href="#experience">实习经历</a>
+        <a class="ghost-link" href="#gallery">生活剪影</a>
+        <a class="ghost-link" href="#talent">钢琴片段</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow">Data Analysis × Operations</div>
+        <h1>杨景云</h1>
+        <p class="lead">
+          中南财经政法大学数字经济硕士在读，具备金融学本科背景，正在寻找数据分析与运营方向岗位。
+          我习惯用指标拆解问题、用内容理解用户、用复盘推动策略优化，希望把分析能力真正落到业务增长结果上。
+        </p>
+
+        <div class="hero-tags">
+          <span class="hero-tag">Python</span>
+          <span class="hero-tag">SQL</span>
+          <span class="hero-tag">Excel 数据整理</span>
+          <span class="hero-tag">数据可视化</span>
+          <span class="hero-tag">内容运营</span>
+          <span class="hero-tag">活动转化分析</span>
+        </div>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="assets/resume.pdf" target="_blank" rel="noopener">查看简历 PDF</a>
+          <a class="button button-secondary" href="#experience">查看经历亮点</a>
+        </div>
+
+        <div class="contact-strip">
+          <div class="contact-item">
+            <span class="contact-label">邮箱</span>
+            <strong>15097094080@163.com</strong>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">电话</span>
+            <strong>15097094080</strong>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">求职方向</span>
+            <strong>数据分析 / 运营</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-photo">
+        <img src="assets/gallery-bridge.jpg" alt="杨景云桥边生活照">
+        <div class="photo-caption">希望成为既懂数据、也懂用户与业务节奏的复合型候选人。</div>
+      </div>
+    </section>
+
+    <section class="stats-grid">
+      <div class="panel stat-card">
+        <div class="stat-number">10W+</div>
+        <div>新媒体账号累计阅读量</div>
+      </div>
+      <div class="panel stat-card">
+        <div class="stat-number">10%</div>
+        <div>全平台粉丝月均增长</div>
+      </div>
+      <div class="panel stat-card">
+        <div class="stat-number">20%</div>
+        <div>活动期间课程咨询量提升</div>
+      </div>
+      <div class="panel stat-card">
+        <div class="stat-number">10%</div>
+        <div>报名转化率提升</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Profile Summary</div>
+          <h2>我能带来的，是“分析”与“落地”的结合</h2>
+        </div>
+        <p class="section-intro">
+          比起只会做表或者只会写内容，我更关心如何把数据观察转成实际动作，并让动作继续沉淀为可复盘的策略。
+        </p>
+      </div>
+
+      <div class="meta-grid">
+        <div class="panel summary-panel">
+          <p>
+            从教育经历来看，我的训练路径横跨金融学与数字经济，这让我对数据、商业逻辑和行业变化都保持较强敏感度。
+            在新东方的新媒体运营实习中，我不仅参与内容选题、脚本撰写和营销活动执行，也持续跟踪曝光、点击、咨询和转化等核心指标，
+            通过每周、每月复盘去调整选题方向、投放渠道和活动玩法。这样的经历让我逐步形成一种工作习惯：先观察关键指标，再识别问题原因，最后提出可以执行的优化动作。
+          </p>
+          <br>
+          <p>
+            在中信建投证券厦门分公司的经历，则进一步强化了我的行业研究和数据提炼能力。
+            我围绕热点公司与行业主题完成多维度资料收集、指标梳理和可视化展示，更理解数据不仅是结果，也是支撑判断、形成观点和辅助决策的工具。
+            我希望未来进入一份能够同时连接用户洞察、数据分析与业务增长的岗位，在实践中继续把分析能力做深，也把执行能力做实。
+          </p>
+        </div>
+
+        <aside class="panel side-panel">
+          <div class="micro-title">关键词画像</div>
+          <div class="mini-list">
+            <div class="mini-item">
+              <strong>数据敏感度</strong>
+              能够围绕曝光、点击、咨询、转化等指标持续复盘并提出优化思路。
+            </div>
+            <div class="mini-item">
+              <strong>业务理解力</strong>
+              理解内容运营、活动转化、用户增长与行业研究之间的业务连接。
+            </div>
+            <div class="mini-item">
+              <strong>表达与协同</strong>
+              兼具文案表达、项目撰写与跨团队协同推进的执行能力。
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Core Strengths</div>
+          <h2>三项与岗位最相关的能力</h2>
+        </div>
+      </div>
+
+      <div class="strength-grid">
+        <article class="panel strength-card">
+          <h3>数据整理与分析复盘</h3>
+          <p>
+            熟悉使用 Excel、Python、SQL 处理结构化信息，能够围绕运营指标做基础清洗、分类整理、趋势观察和可视化表达，
+            支持日常复盘、阶段总结与策略优化。
+          </p>
+        </article>
+
+        <article class="panel strength-card">
+          <h3>内容运营与增长意识</h3>
+          <p>
+            有新媒体内容策划与活动执行经验，理解从选题、脚本、投放到转化追踪的完整链路，能够站在用户和业务双重视角看待增长问题。
+          </p>
+        </article>
+
+        <article class="panel strength-card">
+          <h3>研究表达与结构化输出</h3>
+          <p>
+            能把零散信息快速收束成清晰结构，形成报告、计划书和复盘文档。无论是行业研究还是活动总结，我都更偏向用框架与证据说话。
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Education & Skills</div>
+          <h2>教育背景与工具能力</h2>
+        </div>
+      </div>
+
+      <div class="timeline-grid">
+        <article class="panel timeline-card">
+          <div class="timeline-top">
+            <div>
+              <h3>中南财经政法大学</h3>
+              <p>数字经济 / 硕士</p>
+            </div>
+            <span class="timeline-tag">2025.09 - 2027.06</span>
+          </div>
+          <p>正在进一步补足数字经济、数据应用与研究分析方向的系统训练，希望把学术训练转换为更扎实的业务分析能力。</p>
+        </article>
+
+        <article class="panel timeline-card">
+          <div class="timeline-top">
+            <div>
+              <h3>集美大学</h3>
+              <p>金融学 / 本科</p>
+            </div>
+            <span class="timeline-tag">2020.09 - 2024.06</span>
+          </div>
+          <ul>
+            <li>核心课程：数据分析与可视化、计量经济学、统计学、平台经济、公司金融</li>
+            <li>荣誉经历：2 次校级专业奖学金，校级商业策划比赛一等奖</li>
+          </ul>
+        </article>
+
+        <article class="panel timeline-card">
+          <div class="timeline-top">
+            <div>
+              <h3>分析工具</h3>
+              <p>从整理到表达的基础工作流</p>
+            </div>
+            <span class="timeline-tag">Tools</span>
+          </div>
+          <div class="skill-chips">
+            <span class="chip">Python</span>
+            <span class="chip">SQL</span>
+            <span class="chip">Excel</span>
+            <span class="chip">Office</span>
+            <span class="chip">数据可视化</span>
+            <span class="chip">报告撰写</span>
+          </div>
+        </article>
+
+        <article class="panel timeline-card">
+          <div class="timeline-top">
+            <div>
+              <h3>补充能力</h3>
+              <p>稳定支持综合求职表达</p>
+            </div>
+            <span class="timeline-tag">Other</span>
+          </div>
+          <ul>
+            <li>CET-6、银行从业资格证、普通话二乙、驾照</li>
+            <li>兴趣爱好：钢琴、羽毛球、写作</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Experience Highlights</div>
+          <h2>实习与项目里，我如何把事情做实</h2>
+        </div>
+        <p class="section-intro">
+          下面这几段经历，是我目前最能代表“数据分析 + 运营执行 + 研究表达”三者结合的部分。
+        </p>
+      </div>
+
+      <div class="experience-stack">
+        <article class="panel experience-card">
+          <div class="experience-meta">
+            <div>
+              <h3>新东方（西安）</h3>
+              <div class="experience-role">新媒体运营实习生</div>
+            </div>
+            <span class="timeline-tag">2025.04 - 2025.08</span>
+          </div>
+          <p>
+            这段经历让我真正进入“内容生产 - 活动执行 - 数据复盘 - 策略调整”的完整运营循环。
+            我参与小红书、微信公众号、抖音等平台的内容策划，撰写升学干货、课程介绍、学员案例等原创推文与短视频脚本 20 余篇，
+            累计带来 10W+ 阅读量，并推动账号粉丝月均增长约 10%。
+          </p>
+          <ul>
+            <li>参与 618 教育大促、暑期爆款班招生、学习打卡营等核心营销项目，跟进选品、优惠配置、上线审核与投放协同。</li>
+            <li>持续统计曝光、点击、咨询和转化等指标，输出周度、月度复盘，支持活动玩法与投放渠道优化。</li>
+            <li>在活动期间实现课程咨询量提升 20%、报名转化率提升 10%，对“内容与数据协同驱动增长”有了更直接理解。</li>
+          </ul>
+        </article>
+
+        <article class="panel experience-card">
+          <div class="experience-meta">
+            <div>
+              <h3>中信建投证券厦门分公司</h3>
+              <div class="experience-role">理财规划师助理</div>
+            </div>
+            <span class="timeline-tag">2022.07 - 2022.09</span>
+          </div>
+          <p>
+            在这段经历中，我更多承担数据收集、行业整理和研究辅助角色，训练自己从海量公开资料里提取关键信息，
+            再将其转化为更容易判断与交流的分析框架。
+          </p>
+          <ul>
+            <li>围绕东方甄选、比亚迪等热点标的，使用 Wind、Bloomberg 等渠道收集财务、行业规模和产业链信息。</li>
+            <li>与团队合作完成 20+ 页分析报告，参与核心数据模块搭建，提升了结构化研究与分析表达能力。</li>
+            <li>针对直播带货爆发期的 GMV、用户增长、毛利率等指标做可视化处理，帮助团队更直观理解事件对业绩与估值的影响。</li>
+          </ul>
+        </article>
+
+        <article class="panel experience-card">
+          <div class="experience-meta">
+            <div>
+              <h3>校园项目与组织经历</h3>
+              <div class="experience-role">学习委员 / 宣传委员 / 商业计划书负责人</div>
+            </div>
+            <span class="timeline-tag">2021 - 2023</span>
+          </div>
+          <p>
+            这些校园经历持续锻炼了我的统筹、写作与策划能力，也让我逐渐形成“先搭结构、再补内容、最后优化表达”的工作习惯。
+          </p>
+          <ul>
+            <li>班级工作中负责信息流转、公众号内容选题、文案撰写与图文推送，累计发布原创推文十余篇。</li>
+            <li>美妆零售与用户运营项目中，聚焦 YSL 品牌定位、产品线与会员机制，合作完成商业计划书撰写与运营策略设计。</li>
+            <li>在项目里学习如何把品牌玩法、用户权益与转化提升联系起来，补充了我对消费品运营逻辑的理解。</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="gallery">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Life Snapshots</div>
+          <h2>专业之外，也保留一点温度</h2>
+        </div>
+      </div>
+
+      <div class="gallery-grid">
+        <article class="panel gallery-card gallery-card-autumn">
+          <img src="assets/hero.jpg" alt="杨景云秋日生活照">
+          <p class="gallery-note">在日常里保持稳定、松弛和观察力，也让我更愿意把这种状态带进工作节奏。</p>
+        </article>
+        <article class="panel gallery-card gallery-card-city">
+          <img src="assets/gallery-city-upright.jpg" alt="杨景云城市生活照">
+          <p class="gallery-note">对城市、行业和生活节奏的持续观察，也让我更习惯从环境变化里理解人的需求。</p>
+        </article>
+        <article class="panel gallery-card gallery-card-forum">
+          <img src="assets/gallery-forum-upright.jpg" alt="杨景云学术会议照片">
+          <p class="gallery-note">对研究、表达和持续学习保持投入，希望未来把分析思维更稳定地应用到实际业务中。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="talent">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Piano Interlude</div>
+          <h2>一分钟钢琴片段，留一点轻松感</h2>
+        </div>
+      </div>
+
+      <div class="talent-grid">
+        <article class="panel talent-copy">
+          <p>
+            对我来说，钢琴不只是兴趣，更像一种调节节奏和保持专注的方式。把这段短视频放在页面下半部分，
+            不是想喧宾夺主，而是希望在专业经历与数据结果之外，也让人感受到我在表达、专注和长期投入这件事上的状态。
+          </p>
+          <p>
+            我是一个<strong>有个性、好奇心强、愿意独立思考</strong>的人，也会对环境、情绪和细节保持比较高的敏感度。
+            我常常会去追问一件事为什么成立、还能不能更好，也因此更看重那些真正能促进成长和内在发展的工作。
+          </p>
+          <p>
+            我同样比较理想化，也很重视与他人建立<strong>真实、深入、能够共同进步</strong>的关系。
+            无论是做分析、做运营还是做长期职业选择，我都希望参与的是既能推动自己进步，也能对他人产生积极价值的事情。
+          </p>
+          <p>
+            如果你愿意，也可以在方便的时候点开听一小段。它只是一个轻一点的小切口，让这份求职主页多一点真实感和交流感。
+          </p>
+        </article>
+
+        <article class="panel talent-media">
+          <div class="micro-title">Video</div>
+          <div class="talent-video">
+            <video controls preload="metadata" poster="assets/piano-poster.png">
+              <source src="assets/piano-performance.mov" type="video/quicktime">
+              您的浏览器暂不支持此视频格式，请直接打开 assets 文件夹中的视频文件查看。
+            </video>
+          </div>
+          <div class="hero-actions" style="margin-top: 16px;">
+            <a class="button button-secondary" href="assets/piano-performance.mov" target="_blank" rel="noopener">单独打开钢琴视频</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>
